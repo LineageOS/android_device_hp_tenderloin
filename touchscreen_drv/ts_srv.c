@@ -101,6 +101,7 @@ struct touchpoint {
 	int pw;
 	float i;
 	float j;
+    int tracking_id;
     unsigned short isValid;
 };
 
@@ -120,6 +121,8 @@ int dist(int x1, int y1, int x2, int y2)  {
 struct touchpoint tpoint[MAX_TOUCH];
 struct touchpoint prevtpoint[MAX_TOUCH];
 struct touchpoint prev2tpoint[MAX_TOUCH];
+int got_point; // this indicates if we found a valid touch in the buffer - if not then we need to liftoff
+int previoustpc; // count of touches from the last buffer so we can see if there was a change
 
 #if AVG_FILTER
 int isClose(struct touchpoint a, struct touchpoint b)
@@ -194,9 +197,12 @@ void calc_point()
 	for(tpc=0; tpc < MAX_TOUCH; tpc++) {
 		prev2tpoint[tpc].i = prevtpoint[tpc].i;
 		prev2tpoint[tpc].j = prevtpoint[tpc].j;
+        prev2tpoint[tpc].pw = prevtpoint[tpc].pw;
+        prev2tpoint[tpc].tracking_id = prevtpoint[tpc].tracking_id;
 		prevtpoint[tpc].i = tpoint[tpc].i;
 		prevtpoint[tpc].j = tpoint[tpc].j;
 		prevtpoint[tpc].pw = tpoint[tpc].pw;
+        prevtpoint[tpc].tracking_id = tpoint[tpc].tracking_id;  
 	}
     tpc = 0;
 
@@ -280,7 +286,8 @@ void calc_point()
 			tpoint[tpc].i = avgi;
 			tpoint[tpc].j = avgj;
 			tpoint[tpc].isValid = 1;
-			tpc++;
+            tpoint[tpc].tracking_id = tpc;
+            tpc++;
 #if DEBUG
 			printf("Coords %d %lf, %lf, %d\n", tpc, avgi, avgj, tweight);
 #endif
@@ -288,13 +295,43 @@ void calc_point()
 		}
 	}
 
+    // filter touches for impossibly large moves that indicate a liftoff and re-touch
+    float deltai, deltaj, total_delta, smallest_delta;
+    int smallest_delta_location;
+    for (k = 0; k < tpc; k++) {
+        if (tpoint[k].isValid) {
+            smallest_delta = 1000;
+            for (l = 0; l < tpc; l++) {
+                if (tpoint[l].isValid) {
+                    deltai = fabsf(tpoint[k].i - prevtpoint[l].i);
+                    deltaj = fabsf(tpoint[k].j - prevtpoint[l].j);
+                    total_delta = sqrt((deltai * deltai) + (deltaj * deltaj));
+                    if (total_delta < smallest_delta) {
+                        smallest_delta = total_delta;
+                        smallest_delta_location = l;
+                    }
+                }
+            }
+            if (smallest_delta > 5 && previoustpc == tpc) {
+                send_uevent(uinput_fd, EV_ABS, ABS_MT_TRACKING_ID, prevtpoint[smallest_delta_location].tracking_id);
+                send_uevent(uinput_fd, EV_SYN, SYN_MT_REPORT, 0);
+                send_uevent(uinput_fd, EV_SYN, SYN_REPORT, 0);
+#if DEBUG
+                printf("smallest_delta %lf\n", smallest_delta);
+#endif
+            }
+        }
+    }
+    previoustpc = tpc;
+
 	//report touches
+    int touch_id = 0;
 	for (tpc = 0; tpc < MAX_TOUCH; tpc++) {
 		if (tpoint[tpc].isValid) {
 #if AVG_FILTER
 			avg_filter(&tpoint[tpc]);
 #endif //AVG_FILTER
-			send_uevent(uinput_fd, EV_KEY, BTN_TOUCH, 1);
+            got_point = 1;
 #if USERSPACE_270_ROTATE
 			send_uevent(uinput_fd, EV_ABS, ABS_MT_POSITION_X, tpoint[tpc].i*768/29);
 			send_uevent(uinput_fd, EV_ABS, ABS_MT_POSITION_Y, 1024-tpoint[tpc].j*1024/39);
@@ -302,10 +339,14 @@ void calc_point()
 			send_uevent(uinput_fd, EV_ABS, ABS_MT_POSITION_Y, 768-tpoint[tpc].i*768/29);
 			send_uevent(uinput_fd, EV_ABS, ABS_MT_POSITION_X, 1024-tpoint[tpc].j*1024/39);
 #endif //USERSPACE_270_ROTATE
+            send_uevent(uinput_fd, EV_ABS, ABS_MT_TOUCH_MAJOR, 1);
+            send_uevent(uinput_fd, EV_ABS, ABS_MT_WIDTH_MAJOR, 10);
+            send_uevent(uinput_fd, EV_ABS, ABS_MT_TRACKING_ID, touch_id++);
 			send_uevent(uinput_fd, EV_SYN, SYN_MT_REPORT, 0);
 			tpoint[tpc].isValid = 0;
         }
     }
+    send_uevent(uinput_fd, EV_KEY, BTN_TOUCH, 1);
 	send_uevent(uinput_fd, EV_SYN, SYN_REPORT, 0);
 }
 #endif
@@ -557,6 +598,28 @@ void open_uinput()
 
 }
 
+void liftoff(fd_set *fdset, int uart_fd)
+{
+    int i;
+    for(i=0; i<MAX_TOUCH; i++) {
+        tpoint[i].i = -10;
+        tpoint[i].j = -10;
+        prevtpoint[i].i = -10;
+        prevtpoint[i].j = -10;
+        prev2tpoint[i].i = -10;
+        prev2tpoint[i].j = -10;
+    }
+    send_uevent(uinput_fd, EV_ABS, ABS_MT_TOUCH_MAJOR, 0);
+    send_uevent(uinput_fd, EV_KEY, BTN_TOUCH, 0);
+    send_uevent(uinput_fd, EV_ABS, ABS_MT_TOUCH_MAJOR, 0);
+    send_uevent(uinput_fd, EV_SYN, SYN_MT_REPORT, 0);
+    send_uevent(uinput_fd, EV_SYN, SYN_REPORT, 0);
+
+    FD_ZERO(fdset);
+    FD_SET(uart_fd, fdset);
+    previoustpc = 0;
+}
+
 int main(int argc, char** argv)
 {
 	struct hsuart_mode uart_mode;
@@ -601,23 +664,7 @@ int main(int argc, char** argv)
 			printf("timeout! sending liftoff\n");
 #endif
 
-			int i;
-			for(i=0; i<MAX_TOUCH; i++) {
-				tpoint[i].i = -10;
-				tpoint[i].j = -10;
-				prevtpoint[i].i = -10;
-				prevtpoint[i].j = -10;
-				prev2tpoint[i].i = -10;
-				prev2tpoint[i].j = -10;
-			}
-//			send_uevent(uinput_fd, EV_ABS, ABS_MT_TOUCH_MAJOR, 0);
-			send_uevent(uinput_fd, EV_KEY, BTN_TOUCH, 0);
-
-            send_uevent(uinput_fd, EV_SYN, SYN_MT_REPORT, 0);
-			send_uevent(uinput_fd, EV_SYN, SYN_REPORT, 0);
-
-			FD_ZERO(&fdset);
-			FD_SET(uart_fd, &fdset);
+			liftoff(&fdset, uart_fd);
 
 			/* Now enter indefinite sleep iuntil input appears */
 			select(uart_fd+1, &fdset, NULL, NULL, NULL);
@@ -637,8 +684,11 @@ int main(int argc, char** argv)
 			printf("%2.2X ",recv_buf[i]);
 		printf("\n");
 #endif
+        got_point = 0;
 		snarf2(recv_buf,nbytes);
+        if (got_point ==0) liftoff(&fdset, uart_fd);
 	}
 
 	return 0;
 }
+
