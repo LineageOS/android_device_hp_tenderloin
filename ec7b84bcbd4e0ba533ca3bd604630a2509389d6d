@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAPn///2Q\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-01-23T22:30:14Z",
+      "side": 1,
+      "message": "No point to have this to be global, it\u0027s only used in one somwhat localized place, so please make it a local variable in main,  and make snarf2 return number of events found and use the return value as a liftoff reason?",
+      "revId": "ec7b84bcbd4e0ba533ca3bd604630a2509389d6d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn///2E\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-01-23T22:30:14Z",
+      "side": 1,
+      "message": "These super wide comments are a pain to read in small editor windows in a terminal, so if you can just put the math comment in front of this line separately wrapping lines at 80 chars, that would be great.\nAlso happens to be the Linux kernel standard",
+      "revId": "ec7b84bcbd4e0ba533ca3bd604630a2509389d6d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn///1w\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-01-23T22:30:14Z",
+      "side": 1,
+      "message": "I suspect we need to provide some sort of ID for this report here? Otherwise it\u0027s sort of a blank liftoff. Sure the android is probably smart enough to figure it out, but why risk it?",
+      "revId": "ec7b84bcbd4e0ba533ca3bd604630a2509389d6d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn///1o\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-01-23T22:30:14Z",
+      "side": 1,
+      "message": "This is dead code at the moment, so need to kill it as well.\n\nAlso let\u0027s not deviate too much into newer C standards and still declare variables at the start of a function.",
+      "revId": "ec7b84bcbd4e0ba533ca3bd604630a2509389d6d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn///1s\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-01-23T22:30:14Z",
+      "side": 1,
+      "message": "In reality probably even better thing to do is to call the liftoff right around here if there are 0 events and have got_point local to this function.",
+      "revId": "ec7b84bcbd4e0ba533ca3bd604630a2509389d6d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn///1k\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-01-23T22:30:14Z",
+      "side": 1,
+      "message": "Filling entire array seems to be overkill, don\u0027t we have some counter that holds the size of it already?\n\nSdditionally I think memset would be faster too. Use the 0xff fill pattern for -1 value",
+      "revId": "ec7b84bcbd4e0ba533ca3bd604630a2509389d6d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn///1g\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-01-23T22:30:14Z",
+      "side": 1,
+      "message": "Why do we needed these? They are done at every iteration before select anyway so just drop them which would allow you to call this function more freely.",
+      "revId": "ec7b84bcbd4e0ba533ca3bd604630a2509389d6d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn///1Y\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 680,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-01-23T22:30:14Z",
+      "side": 1,
+      "message": "If you don\u0027t kill this after all, please also wrap the line at 80 chars",
+      "revId": "ec7b84bcbd4e0ba533ca3bd604630a2509389d6d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}

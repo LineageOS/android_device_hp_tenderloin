@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAPn///1c\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 620,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-01-23T22:30:14Z",
+      "side": 0,
+      "message": "Reinstate these two lines back since they are needed for the subsequent select only, but not for other calls.",
+      "revId": "1751b2fc8658ab10a3b7fb7290b38a1c9969cc56",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
