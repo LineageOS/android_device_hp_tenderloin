@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAPn///84\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 555
+      },
+      "writtenOn": "2012-01-23T11:45:11Z",
+      "side": 1,
+      "message": "Nitpick: Since this value is only compared to other total_deltas the square root can be factored out. If its not necessary we should leave it out as a minor optimization.",
+      "revId": "a5e457fddc6947c05250718da5a28e8d986559b8",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
