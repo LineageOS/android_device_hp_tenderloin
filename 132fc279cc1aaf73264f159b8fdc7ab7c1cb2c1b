@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAPn///qA\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-01-24T22:49:36Z",
+      "side": 1,
+      "message": "Please split this line so that the comment is on its own line.",
+      "revId": "132fc279cc1aaf73264f159b8fdc7ab7c1cb2c1b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
