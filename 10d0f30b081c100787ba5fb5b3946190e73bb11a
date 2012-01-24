@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAPn///xM\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-01-24T02:05:50Z",
+      "side": 1,
+      "message": "Duh, missed this the first time, this will do a \"all fingers liftoff\" right here. Which is why it appears to be working in light testing I guess.",
+      "revId": "10d0f30b081c100787ba5fb5b3946190e73bb11a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn///xE\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-01-24T02:05:50Z",
+      "side": 1,
+      "message": "Ah, dang, sorry I did not notice this earlier either, but the array also has some fields that were not overwritten like isValid that turn to true with this code. ;(",
+      "revId": "10d0f30b081c100787ba5fb5b3946190e73bb11a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn///xI\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-01-24T02:05:50Z",
+      "side": 1,
+      "message": "Whitespace at the end of lines needs to be avoided.",
+      "revId": "10d0f30b081c100787ba5fb5b3946190e73bb11a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
