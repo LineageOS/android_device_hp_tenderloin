@@ -65,6 +65,7 @@
 #define MAX_TOUCH 10
 #define MAX_CLIST 75
 #define MAX_DELTA 25 // this value is squared to prevent the need to use sqrt
+#define TOUCH_THRESHOLD 32 // threshold for what is considered a valid touch
 
 unsigned char cline[64];
 unsigned int cidx=0;
@@ -203,7 +204,7 @@ int calc_point()
 #if RAW_DATA_DEBUG
 			printf("%2.2X ", matrix[i][j]);
 #endif
-			if(matrix[i][j] > 32 && clc < MAX_CLIST) {
+			if(matrix[i][j] > TOUCH_THRESHOLD && clc < MAX_CLIST) {
 				int cvalid=1;
 				clist[clc].pw = matrix[i][j];
 				clist[clc].i = i;
@@ -415,7 +416,6 @@ int snarf2(unsigned char* bytes, int size)
 			i++;
 			if(cline_valid(0))
 			{
-//				printf("was valid\n");
 				break;
 			}
 		}
@@ -423,18 +423,14 @@ int snarf2(unsigned char* bytes, int size)
 		if(i >= size)
 			break;
 
-//		printf("Cline went valid\n");
-		ret = consume_line();
+		ret += consume_line();
 	}
 
 	if(cline_valid(0))
 	{
-		ret = consume_line();
-//		printf("was valid2\n");
+		ret += consume_line();
 	}
 	return ret;
-	/* It's possible that this function might return a 0 when previously there
-	 * was a valid touch count, but in practice this doesn't appear to happen */
 }
 
 void open_uinput()
