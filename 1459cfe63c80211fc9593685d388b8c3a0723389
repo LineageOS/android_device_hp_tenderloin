@@ -16,6 +16,24 @@
       "revId": "1459cfe63c80211fc9593685d388b8c3a0723389",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//+4g\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 2511
+      },
+      "writtenOn": "2012-01-27T21:01:01Z",
+      "side": 0,
+      "message": "I am sure about this.  If I turn on raw data debug output I get output that looks like https://paste.tinyw.in/index.php/view/raw/54745018\n\nAll of the 0\u0027s from clearing the array are being replaced with x01 which indicates that the entire array is being re-filled. (Yes, this is after restoring the clearing of the array.)",
+      "parentUuid": "AAAAPn//+9Q\u003d",
+      "revId": "1459cfe63c80211fc9593685d388b8c3a0723389",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
