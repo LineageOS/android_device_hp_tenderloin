@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAPn///Bc\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-01-27T10:45:54Z",
+      "side": 1,
+      "message": "Function with no arguments is declared as (void) in C",
+      "revId": "105e469de59960408b56c3dbf4bed4c363d29c0e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//+9U\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-01-27T10:45:54Z",
+      "side": 1,
+      "message": "same here - (void)",
+      "revId": "105e469de59960408b56c3dbf4bed4c363d29c0e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}

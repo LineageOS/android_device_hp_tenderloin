@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAPn//+9Q\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-01-27T10:45:54Z",
+      "side": 0,
+      "message": "Are you sure about it?\nWe only fill the line in the next loop, but we clear the entire matrix.\nThis is sort of important because sometimes TS skips some lines where it thinks there is nothing worth sending, and if you drop this code, we\u0027ll have stale data there.",
+      "revId": "1459cfe63c80211fc9593685d388b8c3a0723389",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
