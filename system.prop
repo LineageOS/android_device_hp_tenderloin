@@ -36,3 +36,5 @@ net.bt.name=Android
 
 persist.service.adb.enable=1
 
+# Disable dexopt into /cache/dalvik-cache
+dalvik.vm.dexopt-data-only=1
