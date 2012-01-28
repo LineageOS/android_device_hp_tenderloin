@@ -9,6 +9,8 @@ on init
     mkdir /data 0771 system system
     mkdir /cache 0770 system cache
 
+    mkdir /cache/dalvik-cache 0771 system system
+
     # Enable LVM
 
     # We need to set LVM_SYSTEM_DIR for lvm to work and it does not work
