@@ -28,13 +28,12 @@ TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 
 
 # Wifi related defines
-BOARD_WPA_SUPPLICANT_DRIVER := ar6000
-CONFIG_DRIVER_AR6000 := true
-WPA_SUPPLICANT_VERSION      := VER_0_6_X
-BOARD_WLAN_DEVICE           := ar6000
-WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/ar6000.ko"
-WIFI_DRIVER_MODULE_NAME     := "ar6000"
-BOARD_WEXT_NO_COMBO_SCAN	:= true
+BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_ath6kl
+WPA_SUPPLICANT_VERSION           := VER_0_8_X
+BOARD_WLAN_DEVICE                := ath6kl
+WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/ath6kl.ko"
+WIFI_DRIVER_MODULE_NAME          := "ath6kl"
 
 # Audio
 BOARD_USES_AUDIO_LEGACY := true
@@ -59,19 +58,18 @@ TARGET_USES_SF_BYPASS := false
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_GENLOCK := true
 
+# Camera
+USE_CAMERA_STUB := true
+
 # Webkit workaround
 TARGET_FORCE_CPU_UPLOAD := true
 
 BOARD_USES_QCOM_LIBS := true
 BOARD_USES_QCOM_LIBRPC := true
 BOARD_USE_QCOM_PMEM := true
-BOARD_CAMERA_USE_GETBUFFERINFO := true
-BOARD_FIRST_CAMERA_FRONT_FACING := true
-BOARD_CAMERA_USE_ENCODEDATA := true
 
 BOARD_OVERLAY_FORMAT_YCbCr_420_SP := true
 TARGET_BOOTLOADER_BOARD_NAME := tenderloin
-USE_CAMERA_STUB := true
 
 # tenderloin- these kernel settings are temporary to complete build
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom
