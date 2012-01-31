@@ -91,7 +91,7 @@ struct touchpoint prev2tpoint[MAX_TOUCH];
 
 unsigned char cline[64];
 unsigned int cidx=0;
-unsigned char matrix[30][40]; 
+unsigned char matrix[30][40];
 int uinput_fd;
 
 int send_uevent(int fd, __u16 type, __u16 code, __s32 value)
@@ -458,7 +458,7 @@ void open_uinput(void)
 		fprintf(stderr, "error evbit rel\n");
 
 	if (ioctl(uinput_fd,UI_DEV_CREATE) < 0)
-		fprintf(stderr, "error create\n"); 
+		fprintf(stderr, "error create\n");
 }
 
 void clear_arrays(void)
