@@ -57,6 +57,8 @@
 
 #define AVG_FILTER 1
 
+#define HARD_PRESS_FILTER 1
+
 #define USERSPACE_270_ROTATE 0
 
 #define RECV_BUF_SIZE 1540
@@ -65,11 +67,17 @@
 #define MAX_TOUCH 10
 #define MAX_CLIST 75
 #define MAX_DELTA 25 // this value is squared to prevent the need to use sqrt
-#define TOUCH_THRESHOLD 24 // threshold for what is considered a valid touch
+#define TOUCH_THRESHOLD 28 // threshold for what is considered a valid touch
+#define HARD_PRESS 52 // threshold to invoke the hard press filter
+#define HARD_UNPRESS 32 // theshold for end of the invalidated area filter
+
+#define DEBOUNCE_FILTER 1
+#define DEBOUNCE_RADIUS 2 // radius for debounce in pixels
 
 unsigned char cline[64];
 unsigned int cidx=0;
-unsigned char matrix[30][40]; 
+unsigned char matrix[30][40];
+int invalid_matrix[30][40];
 int uinput_fd;
 
 int send_uevent(int fd, __u16 type, __u16 code, __s32 value)
@@ -88,7 +96,6 @@ int send_uevent(int fd, __u16 type, __u16 code, __s32 value)
 
     return 0;
 }
-
 
 struct candidate {
 	int pw;
@@ -184,6 +191,25 @@ void liftoff(void)
 	send_uevent(uinput_fd, EV_SYN, SYN_REPORT, 0);
 }
 
+#if HARD_PRESS_FILTER
+void check_hard_press_points(int *mini, int *maxi, int *minj, int *maxj, int i, int j){
+	// invalidate this touch point so that we don't process it later
+	invalid_matrix[i][j] = 1;
+	if (i < *mini) *mini = i;
+	if (i > *maxi) *maxi = i;
+	if (j < *minj) *minj = j;
+	if (j > *maxj) *maxj = j;
+	if(i>0  && !invalid_matrix[i-1][j] && matrix[i-1][j] > HARD_UNPRESS)
+		check_hard_press_points(mini, maxi, minj, maxj, i-1, j);
+	if(i<29 && !invalid_matrix[i+1][j] && matrix[i+1][j] > HARD_UNPRESS)
+		check_hard_press_points(mini, maxi, minj, maxj, i+1, j);
+	if(j>0  && !invalid_matrix[i][j-1] && matrix[i][j-1] > HARD_UNPRESS)
+		check_hard_press_points(mini, maxi, minj, maxj, i, j-1);
+	if(j<39 && !invalid_matrix[i][j+1] && matrix[i][j+1] > HARD_UNPRESS)
+		check_hard_press_points(mini, maxi, minj, maxj, i, j+1);
+}
+#endif
+
 int calc_point(void)
 {
 	int i,j;
@@ -195,6 +221,13 @@ int calc_point(void)
 	static int previoustpc;
 	int clc=0;
 	struct candidate clist[MAX_CLIST];
+#if DEBOUNCE_FILTER
+	int new_debounce_touch=0;
+	static float initiali, initialj;
+
+	if (tpoint[0].i < 0)
+		new_debounce_touch=1;
+#endif
 
     //Record values for processing later
 	for(i=0; i < previoustpc; i++) {
@@ -207,34 +240,61 @@ int calc_point(void)
 	}
 
 	// generate list of high values
+#if HARD_PRESS_FILTER
+	memset(&invalid_matrix, 0, sizeof(invalid_matrix));
+#endif
 	for(i=0; i < 30; i++) {
 		for(j=0; j < 40; j++) {
 #if RAW_DATA_DEBUG
-			printf("%2.2X ", matrix[i][j]);
+			if (matrix[i][j] < 3)
+				printf("   ");
+			else
+				printf("%2.2X ", matrix[i][j]);
 #endif
-			if(matrix[i][j] > TOUCH_THRESHOLD && clc < MAX_CLIST) {
-				int cvalid=1;
-				clist[clc].pw = matrix[i][j];
-				clist[clc].i = i;
-				clist[clc].j = j;
-				//check if local maxima
-				if(i>0  && matrix[i-1][j] > matrix[i][j]) cvalid = 0;
-				if(i<29 && matrix[i+1][j] > matrix[i][j]) cvalid = 0;
-				if(j>0  && matrix[i][j-1] > matrix[i][j]) cvalid = 0;
-				if(j<39 && matrix[i][j+1] > matrix[i][j]) cvalid = 0; 
-				if(cvalid) clc++;
+			if (clc < MAX_CLIST) {
+#if HARD_PRESS_FILTER
+				if(matrix[i][j] > HARD_PRESS && !invalid_matrix[i][j]) {
+					// this is a high value or hard press, so we're going to
+					// find the full size of the hard press & calculate a center
+					// then invalidate all of the other areas within this radius
+					int mini=i,maxi=i,minj=j,maxj=j;
+					check_hard_press_points(&mini, &maxi, &minj, &maxj, i, j);
+					int centeri, centerj;
+					centeri = mini + ((maxi - mini) / 2);
+					centerj = minj + ((maxj - minj) / 2);
+					clist[clc].i = centeri;
+					clist[clc].j = centerj;
+					clist[clc].pw = matrix[centeri][centerj];
+					clc++;
+				}
+				else if (!invalid_matrix[i][j]) {
+#endif
+					if(matrix[i][j] > TOUCH_THRESHOLD) {
+						int cvalid=1;
+						//check if local maxima
+						if(i>0  && matrix[i-1][j] > matrix[i][j]) cvalid = 0;
+						if(i<29 && matrix[i+1][j] > matrix[i][j]) cvalid = 0;
+						if(j>0  && matrix[i][j-1] > matrix[i][j]) cvalid = 0;
+						if(j<39 && matrix[i][j+1] > matrix[i][j]) cvalid = 0; 
+						if(cvalid) {
+							clist[clc].pw = matrix[i][j];
+							clist[clc].i = i;
+							clist[clc].j = j;
+							clc++;
+						}
+					}
+#if HARD_PRESS_FILTER
+				}
+#endif
 			}
 		}
 #if RAW_DATA_DEBUG
-		printf("\n");
+		printf("|\n");
 #endif
 	}
-#if DEBUG
-	printf("%d clc\n", clc);
+#if RAW_DATA_DEBUG
+	printf("end of raw data\n"); // helps separate one frame from the next
 #endif
-
-	// sort candidate list by strength
-	//qsort(clist, clc, sizeof(clist[0]), tpcmp);
 
 #if DEBUG
 	printf("%d %d %d \n", clist[0].pw, clist[1].pw, clist[2].pw);
@@ -290,7 +350,6 @@ int calc_point(void)
 #if DEBUG
 			printf("Coords %d %lf, %lf, %d\n", tpc, avgi, avgj, tweight);
 #endif
-
 		}
 	}
 
@@ -312,6 +371,27 @@ int calc_point(void)
 #if AVG_FILTER
 			avg_filter(&tpoint[k]);
 #endif //AVG_FILTER
+#if DEBOUNCE_FILTER
+			if (tpc == 1) {
+				if (new_debounce_touch && k == 0) {
+					initiali = tpoint[k].i;
+					initialj = tpoint[k].j;
+				} else if (initiali > 0) {
+					int mini = (initiali*768/29)  - DEBOUNCE_RADIUS,
+						maxi = (initiali*768/29)  + DEBOUNCE_RADIUS,
+						minj = (initialj*1024/39) - DEBOUNCE_RADIUS,
+						maxj = (initialj*1024/39) + DEBOUNCE_RADIUS,
+						actuali = (tpoint[k].i*768/29),
+						actualj = (tpoint[k].j*1024/39);
+					if (actuali >= mini && actuali <= maxi && actualj >= minj && actualj <= maxj) {
+						tpoint[k].i = initiali;
+						tpoint[k].j = initialj;
+					} else {
+						initiali = -100; // invalidate
+					}
+				}
+			}
+#endif
 			send_uevent(uinput_fd, EV_KEY, BTN_TOUCH, 1);
 #if USERSPACE_270_ROTATE
 			send_uevent(uinput_fd, EV_ABS, ABS_MT_POSITION_X, tpoint[k].i*768/29);
