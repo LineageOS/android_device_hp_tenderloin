@@ -70,6 +70,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAP3///Y0\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 2511
+      },
+      "writtenOn": "2012-02-01T01:40:23Z",
+      "side": 1,
+      "message": "initiali and intialj will have values set after the first touch is recorded.  There is no need to set these values based on the way the code will be executed.",
+      "parentUuid": "AAAAP3///Zc\u003d",
+      "revId": "e869b0bde25d7c29e9e6824d38212114e0b07ce4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAP3///aU\u003d",
         "filename": "touchscreen_drv/ts_srv.c",
         "patchSetId": 1
