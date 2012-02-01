@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAP3///SA\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-02-01T08:34:23Z",
+      "side": 1,
+      "message": "I think you used 3 in your earlier patch? Not that I care much.",
+      "revId": "00657a29b78e3bc81989a4a5f98b650717ad9ebe",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAP3///SI\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-02-01T08:34:23Z",
+      "side": 1,
+      "message": "Another code clarity thing is to use space around assignments and comparisons",
+      "revId": "00657a29b78e3bc81989a4a5f98b650717ad9ebe",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAP3///SE\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-02-01T08:34:23Z",
+      "side": 1,
+      "message": "and assignments like here need spaces",
+      "revId": "00657a29b78e3bc81989a4a5f98b650717ad9ebe",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAP3///R4\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-02-01T08:34:23Z",
+      "side": 1,
+      "message": "Note that k \u003d\u003d 0 here is always true.\nI am not advocating this removal only for the case if you think this code would be reused for a multipoint debounce as well.",
+      "revId": "00657a29b78e3bc81989a4a5f98b650717ad9ebe",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAP3///R8\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-02-01T08:34:23Z",
+      "side": 1,
+      "message": "I think we can greatly simplify this part and cut on some unneeded runtime calculations here.\nWhat we need to do is basically declare a DEBOUNCE_RADIUS_RAW_X as (DEBOUNCE_RADIUS *768/29) and DEBOUNCE_DARIOUS_RAW_Y in a similar way (need to make sure the are of float type of course).\nThese would be resolved at compile time since the values are all known.\nNote this also must take into account the USERSPACE_270_ROTATE define.\n\nthen we drop all the max* stuff and the comparison below becomes:\nabs(actuali-initiali) \u003c\u003d DEBOUNCE_RADIUS_RAW_X \u0026\u0026 abs(actualj-initialj) \u003c\u003d DEBOUNCE_RADIUS_RAW_Y",
+      "revId": "00657a29b78e3bc81989a4a5f98b650717ad9ebe",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}

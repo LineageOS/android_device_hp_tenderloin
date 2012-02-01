@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAP3///R0\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-02-01T08:34:23Z",
+      "side": 0,
+      "message": "The next comment also makes me wonder if this could ever be false now?",
+      "revId": "5828d09bbfdeb36e127f33eadaadfa49a371391b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
