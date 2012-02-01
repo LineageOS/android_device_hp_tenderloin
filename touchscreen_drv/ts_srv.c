@@ -16,7 +16,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301, USA.
  *
- * The code was written from scrath, the hard math and understanding the
+ * The code was written from scratch, the hard math and understanding the
  * device output by jonpry @ gmail
  * uinput bits and the rest by Oleg Drokin green@linuxhacker.ru
  * Multitouch detection by Rafael Brune mail@rbrune.de
@@ -54,6 +54,9 @@
 
 /* Set to 1 to see raw data from the driver */
 #define RAW_DATA_DEBUG 0
+// Removes values below threshold for easy reading, set to 0 to see everything.
+// A value of 2 should remove most unwanted output
+#define RAW_DATA_THRESHOLD 0
 
 #define AVG_FILTER 1
 
@@ -64,13 +67,35 @@
 
 #define MAX_TOUCH 10
 #define MAX_CLIST 75
-#define MAX_DELTA 25 // this value is squared to prevent the need to use sqrt
-#define TOUCH_THRESHOLD 24 // threshold for what is considered a valid touch
+#define MAX_DELTA 25 // This value is squared to prevent the need to use sqrt
+#define TOUCH_THRESHOLD 28 // Threshold for what is considered a valid touch
+
+// Enables filtering of larger touch areas like the side of your thumb into
+// a single touch
+#define LARGE_AREA_FILTER 1
+#define LARGE_AREA_THRESHOLD 52 // Threshold to invoke the large area filter
+#define LARGE_AREA_UNPRESS 32 // Threshold for end of the large area
+
+// Enables filtering of a single touch to make it easier to long press.
+// Keeps the initial touch point the same so long as it stays within
+// the radius (note it's not really a radius and is actually a square)
+#define DEBOUNCE_FILTER 1
+#define DEBOUNCE_RADIUS 2 // Radius for debounce in pixels
+
+/** ------- end of user modifiable parameters ---- */
+#if DEBOUNCE_FILTER
+#if USERSPACE_270_ROTATE
+#define DEBOUNCE_RADIUS_RAW_X ((float)DEBOUNCE_RADIUS / 1024 * 39)
+#define DEBOUNCE_RADIUS_RAW_Y ((float)DEBOUNCE_RADIUS /  768 * 29)
+#else
+#define DEBOUNCE_RADIUS_RAW_X ((float)DEBOUNCE_RADIUS /  768 * 29)
+#define DEBOUNCE_RADIUS_RAW_Y ((float)DEBOUNCE_RADIUS / 1024 * 39)
+#endif
+#endif
 
 #define MIN(X,Y) ((X) < (Y) ? (X) : (Y))
 #define MAX(X,Y) ((X) > (Y) ? (X) : (Y))
 #define isBetween(A, B, C) ( ((A-B) > 0) && ((A-C) < 0) )
-
 
 struct candidate {
 	int pw;
@@ -92,6 +117,7 @@ struct touchpoint prev2tpoint[MAX_TOUCH];
 unsigned char cline[64];
 unsigned int cidx=0;
 unsigned char matrix[30][40];
+int invalid_matrix[30][40];
 int uinput_fd;
 
 int send_uevent(int fd, __u16 type, __u16 code, __s32 value)
@@ -187,6 +213,27 @@ void liftoff(void)
 	send_uevent(uinput_fd, EV_SYN, SYN_REPORT, 0);
 }
 
+#if LARGE_AREA_FILTER
+void check_large_area_points(int *highi, int *highj, int i, int j){
+	// Invalidate this touch point so that we don't process it later
+	invalid_matrix[i][j] = 1;
+	// Track the highest value for the touch
+	if (matrix[i][j] > matrix[*highi][*highj]) {
+		*highi = i;
+		*highj = j;
+	}
+	// Check nearby points to see if they are above LARGE_AREA_UNPRESS
+	if(i > 0  && !invalid_matrix[i - 1][j] && matrix[i - 1][j] > LARGE_AREA_UNPRESS)
+		check_large_area_points(highi, highj, i - 1, j);
+	if(i < 29 && !invalid_matrix[i + 1][j] && matrix[i + 1][j] > LARGE_AREA_UNPRESS)
+		check_large_area_points(highi, highj, i + 1, j);
+	if(j > 0  && !invalid_matrix[i][j - 1] && matrix[i][j - 1] > LARGE_AREA_UNPRESS)
+		check_large_area_points(highi, highj, i, j - 1);
+	if(j < 39 && !invalid_matrix[i][j + 1] && matrix[i][j + 1] > LARGE_AREA_UNPRESS)
+		check_large_area_points(highi, highj, i, j + 1);
+}
+#endif
+
 int calc_point(void)
 {
 	int i,j,k,l;
@@ -198,6 +245,13 @@ int calc_point(void)
 	static int previoustpc;
 	int clc=0;
 	struct candidate clist[MAX_CLIST];
+#if DEBOUNCE_FILTER
+	int new_debounce_touch = 0;
+	static float initiali, initialj;
+
+	if (tpoint[0].i < 0)
+		new_debounce_touch = 1;
+#endif
 
 	// Record values for processing later
 	for(i=0; i < previoustpc; i++) {
@@ -210,34 +264,60 @@ int calc_point(void)
 	}
 
 	// generate list of high values
+#if LARGE_AREA_FILTER
+	memset(&invalid_matrix, 0, sizeof(invalid_matrix));
+#endif
 	for(i=0; i < 30; i++) {
 		for(j=0; j < 40; j++) {
 #if RAW_DATA_DEBUG
-			printf("%2.2X ", matrix[i][j]);
+			if (matrix[i][j] < RAW_DATA_THRESHOLD)
+				printf("   ");
+			else
+				printf("%2.2X ", matrix[i][j]);
 #endif
-			if(matrix[i][j] > TOUCH_THRESHOLD && clc < MAX_CLIST) {
-				int cvalid=1;
-				clist[clc].pw = matrix[i][j];
-				clist[clc].i = i;
-				clist[clc].j = j;
-				// check if local maxima
-				if(i>0  && matrix[i-1][j] > matrix[i][j]) cvalid = 0;
-				if(i<29 && matrix[i+1][j] > matrix[i][j]) cvalid = 0;
-				if(j>0  && matrix[i][j-1] > matrix[i][j]) cvalid = 0;
-				if(j<39 && matrix[i][j+1] > matrix[i][j]) cvalid = 0; 
-				if(cvalid) clc++;
+			if (clc < MAX_CLIST) {
+#if LARGE_AREA_FILTER
+				if(matrix[i][j] > LARGE_AREA_THRESHOLD && !invalid_matrix[i][j]) {
+					// This is a large area press (e.g. the side of your thumb)
+					// so we will scan all the points nearby and if they are
+					// above the LARGE_AREA_UNPRESS we mark them invalid and
+					// track the highest i,j location so that we can
+					// calculate a "center" for the large area press.
+					int highi = i, highj = j;
+					check_large_area_points(&highi, &highj, i, j);
+					// Set the point to the center
+					clist[clc].i = highi;
+					clist[clc].j = highj;
+					clist[clc].pw = matrix[highi][highj];
+					clc++;
+				}
+				else if (!invalid_matrix[i][j])
+#endif
+				{
+					if(matrix[i][j] > TOUCH_THRESHOLD) {
+						int cvalid = 1;
+						// Check if local maxima
+						if(i>0  && matrix[i-1][j] > matrix[i][j]) cvalid = 0;
+						if(i<29 && matrix[i+1][j] > matrix[i][j]) cvalid = 0;
+						if(j>0  && matrix[i][j-1] > matrix[i][j]) cvalid = 0;
+						if(j<39 && matrix[i][j+1] > matrix[i][j]) cvalid = 0;
+						if(cvalid) {
+							clist[clc].pw = matrix[i][j];
+							clist[clc].i = i;
+							clist[clc].j = j;
+							clc++;
+						}
+					}
+				}
 			}
 		}
 #if RAW_DATA_DEBUG
-		printf("\n");
+		printf("|\n");
 #endif
 	}
-#if DEBUG
-	printf("%d clc\n", clc);
+#if RAW_DATA_DEBUG
+	printf("end of raw data\n"); // helps separate one frame from the next
 #endif
-
-	// sort candidate list by strength
-	//qsort(clist, clc, sizeof(clist[0]), tpcmp);
 
 #if DEBUG
 	printf("%d %d %d \n", clist[0].pw, clist[1].pw, clist[2].pw);
@@ -291,11 +371,10 @@ int calc_point(void)
 #if DEBUG
 			printf("Coords %d %lf, %lf, %d\n", tpc, avgi, avgj, tweight);
 #endif
-
 		}
 	}
 
-	/* filter touches for impossibly large moves that indicate a liftoff and
+	/* Filter touches for impossibly large moves that indicate a liftoff and
 	 * re-touch */
 	if (previoustpc == 1 && tpc == 1) {
 		float deltai, deltaj, total_delta;
@@ -313,6 +392,31 @@ int calc_point(void)
 #if AVG_FILTER
 			avg_filter(&tpoint[k]);
 #endif // AVG_FILTER
+#if DEBOUNCE_FILTER
+			// The debounce filter only works on a single touch.
+			// We record the initial touchdown point, calculate a radius in
+			// pixels and re-center the point if we're still within the
+			// radius.  Once we leave the radius, we invalidate so that we
+			// don't debounce again even if we come back to the radius.
+			if (tpc == 1) {
+				if (new_debounce_touch) {
+					// We record the initial location of a new touch
+					initiali = tpoint[k].i;
+					initialj = tpoint[k].j;
+				} else if (initiali > -20) {
+					// See if the current touch is still inside the debounce
+					// radius
+					if (fabsf(initiali - tpoint[k].i) <= DEBOUNCE_RADIUS_RAW_X
+					    && fabsf(initialj - tpoint[k].j) <= DEBOUNCE_RADIUS_RAW_Y) {
+						// Set the point to the original point - debounce!
+						tpoint[k].i = initiali;
+						tpoint[k].j = initialj;
+					} else {
+						initiali = -100; // Invalidate
+					}
+				}
+			}
+#endif
 			send_uevent(uinput_fd, EV_KEY, BTN_TOUCH, 1);
 #if USERSPACE_270_ROTATE
 			send_uevent(uinput_fd, EV_ABS, ABS_MT_POSITION_X, tpoint[k].i*768/29);
