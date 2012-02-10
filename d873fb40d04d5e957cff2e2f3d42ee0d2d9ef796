@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAQX///nM\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-02-10T09:13:54Z",
+      "side": 1,
+      "message": "Note you need to take into account the the 270 rotated setting too.",
+      "revId": "d873fb40d04d5e957cff2e2f3d42ee0d2d9ef796",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX///nQ\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-02-10T09:13:54Z",
+      "side": 1,
+      "message": "Touchpad? you mean ICS? or .35 kernel?",
+      "revId": "d873fb40d04d5e957cff2e2f3d42ee0d2d9ef796",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX///nI\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-02-10T09:13:54Z",
+      "side": 1,
+      "message": "You made all those nice defines abovem why not reuse them here too?\nnote that the X and Y axes actually run from 0 to MAX-1 while you are at it.",
+      "revId": "d873fb40d04d5e957cff2e2f3d42ee0d2d9ef796",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX///nA\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-02-10T09:13:54Z",
+      "side": 1,
+      "message": "why do you need these? Even if they are swapped, it\u0027s not like the distance will change or anything?",
+      "revId": "d873fb40d04d5e957cff2e2f3d42ee0d2d9ef796",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX///nE\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-02-10T09:13:54Z",
+      "side": 1,
+      "message": "space after comma",
+      "revId": "d873fb40d04d5e957cff2e2f3d42ee0d2d9ef796",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX///m8\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-02-10T09:13:54Z",
+      "side": 1,
+      "message": "These two loops above need a bit more thinking eventually, I think.\n\nConsider a somewhat swipe with three fingers (or even two), where in the middle of the swipe one of the fingers could be lifted. It\u0027s well possible that after than the liftoff the lifted off finger iposition is actually closer to one of the new positions than  the old correct slot position for it was, we\u0027ll see a jump as result.\n\nHeck, even simplier case. Suppose I have several fingers in a line like this:\n\no o o\n\nThen I move them left or right maintaining the formation:\n\n  o o o\n\nThe logic above will now assume that finger2 and finger 3 did not move and finger 1 moved way to the left overcoming the other two fingers...\n\nI hope eventually this could be tracked with velocity tracking.",
+      "revId": "d873fb40d04d5e957cff2e2f3d42ee0d2d9ef796",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX///m4\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-02-10T09:13:54Z",
+      "side": 1,
+      "message": "instead of duplicating this you can just\ndo\n#if AAA || BBB",
+      "revId": "d873fb40d04d5e957cff2e2f3d42ee0d2d9ef796",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX///m0\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 980,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-02-10T09:13:54Z",
+      "side": 1,
+      "message": "You commented out the bit, but not the actual code sending touch major? why is that?",
+      "revId": "d873fb40d04d5e957cff2e2f3d42ee0d2d9ef796",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX///mw\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1079,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-02-10T09:13:54Z",
+      "side": 1,
+      "message": "You don\u0027t need this. BSS is guaranteed to be zeroed on startup.",
+      "revId": "d873fb40d04d5e957cff2e2f3d42ee0d2d9ef796",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX///ms\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 1081,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-02-10T09:13:54Z",
+      "side": 1,
+      "message": "Why liftoff at the start? I imagine there might be a good reason, so add it as a comment please?",
+      "revId": "d873fb40d04d5e957cff2e2f3d42ee0d2d9ef796",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
