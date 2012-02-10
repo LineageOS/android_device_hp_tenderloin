@@ -70,6 +70,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAQX///kU\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 2511
+      },
+      "writtenOn": "2012-02-10T23:32:01Z",
+      "side": 1,
+      "message": "The regular x and y points do get changed from the raw_x and raw_y values in avg_filter and in the debouncer.  Depending on the settings that we\u0027re using, especially in debounce, having the raw value may become important for matching up current points to previous points.",
+      "parentUuid": "AAAAQX///nA\u003d",
+      "revId": "d873fb40d04d5e957cff2e2f3d42ee0d2d9ef796",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAQX///nE\u003d",
         "filename": "touchscreen_drv/ts_srv.c",
         "patchSetId": 2
@@ -104,6 +122,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAQX///lo\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 2511
+      },
+      "writtenOn": "2012-02-10T23:32:01Z",
+      "side": 1,
+      "message": "In practice I\u0027ve never been able to fool this matching system.  The low resolution of the 30x40 grid doesn\u0027t allow your fingers to be pinched very close together before it merges the 2 fingers into a single point.  There also aren\u0027t very many use cases, if any, where you\u0027ll be swiping multiple fingers at a high rate of speed.  Performance of this driver, including pinch distance, is on par or better than webOS and the Motorola Photon aka sunfire which also has a userspace driver like we\u0027re using here.  I encourage you to try the driver and see how it performs in real life and compare it carefully to how other devices and webOS work.",
+      "parentUuid": "AAAAQX///m8\u003d",
+      "revId": "d873fb40d04d5e957cff2e2f3d42ee0d2d9ef796",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAQX///m4\u003d",
         "filename": "touchscreen_drv/ts_srv.c",
         "patchSetId": 2
@@ -132,6 +168,24 @@
       "writtenOn": "2012-02-10T09:13:54Z",
       "side": 1,
       "message": "You commented out the bit, but not the actual code sending touch major? why is that?",
+      "revId": "d873fb40d04d5e957cff2e2f3d42ee0d2d9ef796",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX///lk\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 980,
+      "author": {
+        "id": 2511
+      },
+      "writtenOn": "2012-02-10T23:32:01Z",
+      "side": 1,
+      "message": "Touch major is currently enabled in this patch but width major is not.  Both are optional.  It seems like gerrit isn\u0027t applying the proper color format to the text for touch major, so the lines for touch major are incorrectly colored as if they are a comment.",
+      "parentUuid": "AAAAQX///m0\u003d",
       "revId": "d873fb40d04d5e957cff2e2f3d42ee0d2d9ef796",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
