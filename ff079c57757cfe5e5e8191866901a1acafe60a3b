@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAQX//+yc\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-02-17T12:24:08Z",
+      "side": 1,
+      "message": "It\u0027s a goot practice to separate variable definitions and the actual code with a blank line",
+      "revId": "ff079c57757cfe5e5e8191866901a1acafe60a3b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX//+yU\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-02-17T12:24:08Z",
+      "side": 1,
+      "message": "Littering variable declarations all around a function body or other block is generally a bad idea too.",
+      "revId": "ff079c57757cfe5e5e8191866901a1acafe60a3b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}

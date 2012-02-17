@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAQX//+xo\u003d",
+        "filename": "touchscreen_drv/ts_srv.c",
+        "patchSetId": 7
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-02-17T12:24:08Z",
+      "side": 0,
+      "message": "Since we no longer do mandatory liftoff here, it might make sense to reword this message. Also possibly an opportunity to reword the comment in front of this statement too.\nAlso we can probably convert the define checked to EVENT_DEBUG too.",
+      "revId": "ac32142be51b3b555c21c334f310cc57e588eb6b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
