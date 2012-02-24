@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAQX//9wU\u003d",
+        "filename": "tenderloinparts/res/drawable/color_tuning_preview.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1063
+      },
+      "writtenOn": "2012-02-24T16:03:04Z",
+      "side": 1,
+      "message": "This file is unneeded, right?",
+      "revId": "8c9427567b3f9900f0d3cc734410c7b0fcf1a211",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX//9wY\u003d",
+        "filename": "tenderloinparts/res/layout/top.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1063
+      },
+      "writtenOn": "2012-02-24T16:03:04Z",
+      "side": 1,
+      "message": "Is this file needed?",
+      "revId": "8c9427567b3f9900f0d3cc734410c7b0fcf1a211",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX//9ww\u003d",
+        "filename": "tenderloinparts/res/values/arrays.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1063
+      },
+      "writtenOn": "2012-02-24T16:03:04Z",
+      "side": 1,
+      "message": "Whitespace issue.",
+      "revId": "8c9427567b3f9900f0d3cc734410c7b0fcf1a211",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX//9ws\u003d",
+        "filename": "tenderloinparts/src/com/cyanogenmod/settings/device/TouchscreenFragmentActivity.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1063
+      },
+      "writtenOn": "2012-02-24T16:03:04Z",
+      "side": 1,
+      "message": "Space only indention, please?",
+      "revId": "8c9427567b3f9900f0d3cc734410c7b0fcf1a211",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX//9wo\u003d",
+        "filename": "tenderloinparts/src/com/cyanogenmod/settings/device/Utils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1063
+      },
+      "writtenOn": "2012-02-24T16:03:04Z",
+      "side": 1,
+      "message": "Whitespace.",
+      "revId": "8c9427567b3f9900f0d3cc734410c7b0fcf1a211",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX//9wk\u003d",
+        "filename": "tenderloinparts/src/com/cyanogenmod/settings/device/Utils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1063
+      },
+      "writtenOn": "2012-02-24T16:03:04Z",
+      "side": 1,
+      "message": "Whitespace.",
+      "revId": "8c9427567b3f9900f0d3cc734410c7b0fcf1a211",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX//9wg\u003d",
+        "filename": "tenderloinparts/src/com/cyanogenmod/settings/device/Utils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1063
+      },
+      "writtenOn": "2012-02-24T16:03:04Z",
+      "side": 1,
+      "message": "Instead of duplicating the whole code, this could call writeValue(filename, value ? \"1\" : \"0\");",
+      "revId": "8c9427567b3f9900f0d3cc734410c7b0fcf1a211",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX//9wc\u003d",
+        "filename": "tenderloinparts/src/com/cyanogenmod/settings/device/Utils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1063
+      },
+      "writtenOn": "2012-02-24T16:03:04Z",
+      "side": 1,
+      "message": "More whitespace.",
+      "revId": "8c9427567b3f9900f0d3cc734410c7b0fcf1a211",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
