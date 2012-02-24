@@ -92,7 +92,8 @@ PRODUCT_PACKAGES += \
     bcattach \
     serial \
     com.android.future.usb.accessory \
-    rebootcmd
+    rebootcmd \
+    TenderloinParts
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
