@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAQX//9ms\u003d",
+        "filename": "tenderloinparts/res/xml/touchscreen_preferences.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1078
+      },
+      "writtenOn": "2012-02-25T05:32:11Z",
+      "side": 1,
+      "message": "Use new lines for each of the values, but have \"android:key\" be first and on the same line as \"ListPreference\".",
+      "revId": "adfd721602855ee2baf55f20533c250f89b44ba4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX//9m4\u003d",
+        "filename": "tenderloinparts/src/com/cyanogenmod/settings/device/Startup.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1078
+      },
+      "writtenOn": "2012-02-25T05:32:11Z",
+      "side": 1,
+      "message": "Why restore this on boot?",
+      "revId": "adfd721602855ee2baf55f20533c250f89b44ba4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX//9mo\u003d",
+        "filename": "tenderloinparts/src/com/cyanogenmod/settings/device/TouchscreenFragmentActivity.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1078
+      },
+      "writtenOn": "2012-02-25T05:32:11Z",
+      "side": 1,
+      "message": "Don\u0027t mix the different if styles, it leads to confusion.",
+      "revId": "adfd721602855ee2baf55f20533c250f89b44ba4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
