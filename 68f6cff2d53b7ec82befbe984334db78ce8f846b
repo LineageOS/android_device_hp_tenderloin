@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAQX//9iE\u003d",
+        "filename": "tenderloinparts/src/com/cyanogenmod/settings/device/TouchscreenFragmentActivity.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1078
+      },
+      "writtenOn": "2012-02-25T20:55:37Z",
+      "side": 1,
+      "message": "mSharedPrefs is the correct format for global variables.",
+      "revId": "68f6cff2d53b7ec82befbe984334db78ce8f846b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX//9h4\u003d",
+        "filename": "tenderloinparts/src/com/cyanogenmod/settings/device/TouchscreenFragmentActivity.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1078
+      },
+      "writtenOn": "2012-02-25T20:55:37Z",
+      "side": 1,
+      "message": "tsModePref is the correct format for local variables.",
+      "revId": "68f6cff2d53b7ec82befbe984334db78ce8f846b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX//9iM\u003d",
+        "filename": "tenderloinparts/src/com/cyanogenmod/settings/device/TouchscreenFragmentActivity.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1078
+      },
+      "writtenOn": "2012-02-25T20:55:37Z",
+      "side": 1,
+      "message": "No need to keep debugging in release versions.",
+      "revId": "68f6cff2d53b7ec82befbe984334db78ce8f846b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX//9iI\u003d",
+        "filename": "tenderloinparts/src/com/cyanogenmod/settings/device/TouchscreenFragmentActivity.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1078
+      },
+      "writtenOn": "2012-02-25T20:55:37Z",
+      "side": 1,
+      "message": "This shouldn\u0027t be needed and \"sharedPrefs\" is declared twice.",
+      "revId": "68f6cff2d53b7ec82befbe984334db78ce8f846b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX//9h8\u003d",
+        "filename": "tenderloinparts/src/com/cyanogenmod/settings/device/TouchscreenFragmentActivity.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1078
+      },
+      "writtenOn": "2012-02-25T20:55:37Z",
+      "side": 1,
+      "message": "No need to keep debugging in release versions.",
+      "revId": "68f6cff2d53b7ec82befbe984334db78ce8f846b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX//9iA\u003d",
+        "filename": "tenderloinparts/src/com/cyanogenmod/settings/device/TouchscreenFragmentActivity.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1078
+      },
+      "writtenOn": "2012-02-25T20:55:37Z",
+      "side": 1,
+      "message": "R.string.touchscreen_set_binary should get moved to\n\npublic static final String TOUCHSCREEN_SET_BINARY \u003d \"...\"",
+      "revId": "68f6cff2d53b7ec82befbe984334db78ce8f846b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
