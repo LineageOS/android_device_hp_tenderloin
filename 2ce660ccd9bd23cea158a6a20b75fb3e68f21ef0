@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAQX//9pc\u003d",
+        "filename": "touchscreen_drv/ts_srv_set.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 555
+      },
+      "writtenOn": "2012-02-25T02:46:23Z",
+      "side": 1,
+      "message": "Lets make receiving data over the socket a different function. Aesthetically it would be nice to reduce the number of indentations and functionally this section is slightly different.",
+      "revId": "2ce660ccd9bd23cea158a6a20b75fb3e68f21ef0",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX//9pU\u003d",
+        "filename": "touchscreen_drv/ts_srv_set.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 555
+      },
+      "writtenOn": "2012-02-25T02:46:23Z",
+      "side": 1,
+      "message": "you sneaked a tab in the parameters.",
+      "revId": "2ce660ccd9bd23cea158a6a20b75fb3e68f21ef0",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
