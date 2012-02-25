@@ -135,6 +135,13 @@ int touch_delay_count = TOUCH_DELAY;
 #define DEBOUNCE_RADIUS 10 // Radius for debounce in pixels
 #define DEBOUNCE_DEBUG 0 // Set to 1 to enable debounce logging
 
+// Enables filtering after swiping to prevent the slight jitter that
+// sometimes happens while holding your finger still.  The radius is
+// really a square.
+#define HOVER_DEBOUNCE_FILTER 1 // Set to 1 to enable hover debounce
+#define HOVER_DEBOUNCE_RADIUS 2 // Radius for hover debounce in pixels
+#define HOVER_DEBOUNCE_DEBUG 0 // Set to 1 to enable hover debounce logging
+
 // This is used to help calculate ABS_TOUCH_MAJOR
 // This is roughly the value of 1024 / 40 or 768 / 30
 #define PIXELS_PER_POINT 25
@@ -772,10 +779,35 @@ int calc_point(void)
 						tp[prevtpoint][smallest_distance_loc[i]].x,
 						tp[tpoint][i].y -
 						tp[prevtpoint][smallest_distance_loc[i]].y);
-#endif
+#endif // MAX_DELTA_FILTER
 #if AVG_FILTER
 					avg_filter(&tp[tpoint][i]);
 #endif // AVG_FILTER
+#if HOVER_DEBOUNCE_FILTER
+					int prev2_loc =
+						tp[prevtpoint][smallest_distance_loc[i]].prev_loc;
+					if (prev2_loc >= 0 &&
+						abs(tp[tpoint][i].x -
+						tp[prevtpoint][smallest_distance_loc[i]].x) <
+						HOVER_DEBOUNCE_RADIUS &&
+						abs(tp[tpoint][i].y -
+						tp[prevtpoint][smallest_distance_loc[i]].y) <
+						HOVER_DEBOUNCE_RADIUS &&
+						abs(tp[tpoint][i].x - tp[prev2tpoint][prev2_loc].x) <
+						HOVER_DEBOUNCE_RADIUS &&
+						abs(tp[tpoint][i].y -
+						tp[prev2tpoint][prev2_loc].y) <
+						HOVER_DEBOUNCE_RADIUS) {
+						tp[tpoint][i].x =
+							tp[prevtpoint][smallest_distance_loc[i]].x;
+						tp[tpoint][i].y =
+							tp[prevtpoint][smallest_distance_loc[i]].y;
+#if HOVER_DEBOUNCE_DEBUG
+						printf("Hover debounce on tracking ID %i\n",
+							tp[tpoint][i].tracking_id);
+#endif HOVER_DEBOUNCE_DEBUG
+					}
+#endif // HOVER_DEBOUNCE_FILTER
 				}
 #if USE_B_PROTOCOL
 				tp[tpoint][i].slot =
