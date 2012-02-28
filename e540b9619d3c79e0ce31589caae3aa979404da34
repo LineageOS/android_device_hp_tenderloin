@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAQX//9RE\u003d",
+        "filename": "liblights/lights.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 555
+      },
+      "writtenOn": "2012-02-28T07:00:12Z",
+      "side": 1,
+      "message": "nitpick: need tab here",
+      "revId": "e540b9619d3c79e0ce31589caae3aa979404da34",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQX//9RA\u003d",
+        "filename": "touchscreen_drv/digitizer.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 555
+      },
+      "writtenOn": "2012-02-28T07:00:12Z",
+      "side": 1,
+      "message": "Lets indent the 2nd line of this comment the same as the first.",
+      "revId": "e540b9619d3c79e0ce31589caae3aa979404da34",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
