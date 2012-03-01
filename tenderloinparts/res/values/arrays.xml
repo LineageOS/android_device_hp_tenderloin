@@ -10,4 +10,11 @@
         <item>S</item>
     </string-array>
 
+    <string-array name="charger_control_limits">
+        <item>500ma</item>
+        <item>750ma</item>
+        <item>900ma</item>
+        <item>1400ma</item>
+        <item>2000ma</item>
+    </string-array>
 </resources>
