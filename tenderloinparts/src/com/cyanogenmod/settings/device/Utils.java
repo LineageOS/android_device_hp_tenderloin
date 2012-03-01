@@ -19,6 +19,7 @@ package com.cyanogenmod.settings.device;
 import android.util.Log;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -38,12 +39,16 @@ public class Utils {
      * @param value The value
      */
     public static void writeValue(String filename, String value) {
-        FileOutputStream fos = null;
+        Process p = null;
+        DataOutputStream dos = null;
         try {
-            fos = new FileOutputStream(new File(filename), false);
-            fos.write(value.getBytes());
-            fos.flush();
-            // fos.getFD().sync();
+             p = Runtime.getRuntime().exec("su");
+
+            dos = new DataOutputStream(p.getOutputStream());
+
+            dos.writeBytes("echo " + value + " > " + filename + "\n");
+            dos.writeBytes("exit\n");
+
         } catch (FileNotFoundException ex) {
             Log.w(TAG, "file " + filename + " not found: " + ex);
         } catch (SyncFailedException ex) {
@@ -53,10 +58,15 @@ public class Utils {
         } catch (RuntimeException ex) {
             Log.w(TAG, "exception while syncing file: ", ex);
         } finally {
-            if (fos != null) {
+            if (dos != null) {
                 try {
                     Log.w(TAG_WRITE, "file " + filename + ": " + value);
-                    fos.close();
+                    dos.flush();
+                    dos.close();
+                    if (p.waitFor() != 0)
+                        Log.e(TAG, "Error writing to file: " + filename);
+                } catch (InterruptedException ex) {
+                    Log.w(TAG, "exception while waiting for process to close", ex);
                 } catch (IOException ex) {
                     Log.w(TAG, "IOException while closing synced file: ", ex);
                 } catch (RuntimeException ex) {
@@ -108,7 +118,6 @@ public class Utils {
             try {
                 sLine = brBuffer.readLine();
             } finally {
-                Log.w(TAG_READ, "file " + sFile + ": " + sLine);
                 brBuffer.close();
             }
         } catch (Exception e) {

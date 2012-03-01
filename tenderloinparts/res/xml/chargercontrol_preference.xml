@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <PreferenceCategory android:title="Charger Status">
+        <Preference android:key="charger_current_display"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Temporarily override charger limit">
+        <ListPreference android:key="charger_control_limit_pref"
+            android:entries="@array/charger_control_limits"
+            android:entryValues="@array/charger_control_limits"/>
+    </PreferenceCategory>
+</PreferenceScreen>

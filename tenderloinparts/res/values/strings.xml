@@ -3,12 +3,18 @@
     <string name="app_name">HP TouchPad Settings</string>
 
     <!-- Page Headers -->
-    <string name="touchscreen_title">TOUCHSCREEN</string>
+    <string name="touchscreen_title">Touchscreen</string>
 
     <!-- Touchscreen mode -->
     <string name="touchscreen_mode_dialog_title">Touchscreen optimization strategy</string>
-    <string name="touchscreen_mode_preference_title_finger">Finger</string>
-    <string name="touchscreen_mode_preference_title_stylus">Stylus</string>
+    <string name="touchscreen_mode_preference_title_finger">Finger Mode</string>
+    <string name="touchscreen_mode_preference_title_stylus">Stylus Mode</string>
     <string name="touchscreen_mode_preference_summary_finger">Touchscreen optimized for finger input</string>
     <string name="touchscreen_mode_preference_summary_stylus">Touchscreen optimized for stylus input</string>
+
+    <!-- Charger Control -->
+    <string name="charger_control_title">Charger</string>
+    <string name="charger_control_display_prefix">Charger limit:</string>
+    <string name="charger_control_preference_title">Set Charger Limit</string>
+    <string name="charger_control_preference_summary">Warning: do not set limit higher than the specifications of the charger or USB</string>
 </resources>
