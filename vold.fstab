@@ -1,7 +1,4 @@
-## Vold 2.0 fstab for HTC Passion
-#
-## - San Mehat (san@android.com)
-## 
+## Vold 2.0 fstab for HP Touchpad
 
 #######################
 ## Regular device mount
@@ -14,7 +11,7 @@
 ######################
 
 # Mounts the first usable partition of the specified device
-dev_mount sdcard /mnt/sdcard auto SDCARD=/dev/block/dm-6
+dev_mount sdcard /mnt/sdcard auto SDCARD=/dev/store/media
 
 # for mounting usb storage
 dev_mount usbdisk /mnt/usbdisk auto /devices/platform/msm_hsusb_host.0
