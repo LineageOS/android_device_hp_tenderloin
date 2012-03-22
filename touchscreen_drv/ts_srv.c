@@ -28,7 +28,8 @@
  *
  *
  */
-
+#define LOG_TAG "ts_srv"
+#include <cutils/log.h>
 #include <linux/input.h>
 #include <linux/uinput.h>
 #include <linux/hsuart.h>
@@ -302,7 +303,7 @@ int send_uevent(int fd, __u16 type, __u16 code, __s32 value)
 	event.value = value;
 
 	if (write(fd, &event, sizeof(event)) != sizeof(event)) {
-		fprintf(stderr, "Error on send_event %d", sizeof(event));
+		LOGE("Error on send_event %d", sizeof(event));
 		return -1;
 	}
 
@@ -1155,20 +1156,14 @@ void create_ts_socket(int *socket_fd) {
 		if (bind_fd >= 0) {
 			int listen_fd;
 			listen_fd = listen(*socket_fd, 3);
-#if DEBUG_SOCKET
 			if (listen_fd < 0)
-				printf("Error listening to socket\n");
-#endif
+				LOGE("Error listening to socket");
 		}
-#if DEBUG_SOCKET
 		else
-			printf("Error binding socket\n");
-#endif
+			LOGE("Error binding socket");
 	}
-#if DEBUG_SOCKET
 	else
-		printf("Error creating socket\n");
-#endif
+		LOGE("Error creating socket");
 }
 
 void set_ts_mode(int mode){
@@ -1260,17 +1255,13 @@ void process_socket_buffer(char *buffer[], int buffer_len, int *uart_fd,
 		if (buf == 67 /* 'C' */ && *uart_fd >= 0) {
 			return_val = close(*uart_fd);
 			*uart_fd = -1;
-#if DEBUG_SOCKET
-			printf("uart closed: %i\n", return_val);
-#endif
+			LOGI("uart closed: %d", return_val);
 			touchscreen_power(0);
 		}
 		if (buf == 79 /* 'O' */ && *uart_fd < 0) {
 			touchscreen_power(1);
 			open_uart(uart_fd);
-#if DEBUG_SOCKET
-			printf("uart opened at %i\n", *uart_fd);
-#endif
+			LOGI("uart opened at %d", *uart_fd);
 		}
 		if (buf == 70 /* 'F' */) {
 			set_ts_mode(0);
@@ -1320,6 +1311,7 @@ int main(int argc, char** argv)
 	if (sched_setscheduler(0 /* that's us */, SCHED_FIFO, &sparam))
 		perror("Cannot set RT priority, ignoring: ");
 
+	LOGI("Starting");
 	init_digitizer_fd();
 	touchscreen_power(1);
 
@@ -1335,6 +1327,8 @@ int main(int argc, char** argv)
 	clear_arrays();
 
 	create_ts_socket(&socket_fd);
+
+	LOGI("Started");
 
 	while(1) {
 		FD_ZERO(&fdset);
