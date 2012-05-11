@@ -55,7 +55,7 @@ public class TouchscreenFragmentActivity extends PreferenceFragment {
         syncPreferences();
 
         addPreferencesFromResource(R.xml.touchscreen_preferences);
-        setModePrefTitle(null);
+        setModePrefTitle(getCurrentTouchscreenMode());
 
         Preference tsModePref = findPreference("touchscreen_mode_preference");
         tsModePref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
