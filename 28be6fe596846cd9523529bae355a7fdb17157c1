@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAS3//+I8\u003d",
+        "filename": "tenderloinparts/res/values-ru/strings.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-05-14T20:55:55Z",
+      "side": 1,
+      "message": "This is misspeled.\nthe f2nd letter of the word should be \u0027E\u0027",
+      "revId": "28be6fe596846cd9523529bae355a7fdb17157c1",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAS3//+I4\u003d",
+        "filename": "tenderloinparts/res/values-ru/strings.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 688
+      },
+      "writtenOn": "2012-05-14T20:55:55Z",
+      "side": 1,
+      "message": "perhaps we can just change this to:\n\u0027rezhim raboti\u0027",
+      "revId": "28be6fe596846cd9523529bae355a7fdb17157c1",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
