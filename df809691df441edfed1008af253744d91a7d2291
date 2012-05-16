@@ -1,0 +1,9 @@
+Change-Id: I2b7a97d58d99f2b6eecd1d79dac4e66af36a9dfc
+Code-Review+1: Oleg Drokin <green@linuxhacker.ru>
+Code-Review+2: James Sullins <jcsullins@gmail.com>
+Verified+1: James Sullins <jcsullins@gmail.com>
+Submitted-by: James Sullins <jcsullins@gmail.com>
+Submitted-at: Wed, 16 May 2012 08:03:30 +0400
+Reviewed-on: http://review.cyanogenmod.com/15900
+Project: CyanogenMod/android_device_hp_tenderloin
+Branch: refs/heads/ics
