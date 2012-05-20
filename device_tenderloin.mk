@@ -86,7 +86,9 @@ PRODUCT_PACKAGES += \
 	libOmxCore \
 	libmm-omxcore \
 	libdivxdrmdecrypt \
-	libOmxVdec
+	libOmxVdec \
+	libOmxAacEnc \
+	libOmxAmrEnc
 
 # QCOM OMX Video Encoding/Tests
 #PRODUCT_PACKAGES += \
