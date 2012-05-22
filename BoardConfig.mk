@@ -101,6 +101,21 @@ TARGET_KERNEL_CONFIG := tenderloin_android_defconfig
 # Define Prebuilt kernel locations
 TARGET_PREBUILT_KERNEL := device/hp/tenderloin/prebuilt/boot/kernel
 
+# kernel
+TARGET_KERNEL_SOURCE := kernel/hp/tenderloin
+EXTRA_MODULES:
+	cd external/compat-wireless-3.4-rc3-1; ./scripts/driver-select ath6kl
+	export CROSS_COMPILE=$(ARM_EABI_TOOLCHAIN)/arm-eabi-; $(MAKE) -C external/compat-wireless-3.4-rc3-1 KLIB=$(KERNEL_SRC) KLIB_BUILD=$(KERNEL_OUT) ARCH=$(TARGET_ARCH) $(ARM_CROSS_COMPILE)
+	export CROSS_COMPILE=$(ARM_EABI_TOOLCHAIN)/arm-eabi-; $(MAKE) -C external/compat-wireless-3.4-rc3-1 KLIB=$(KERNEL_SRC) KLIB_BUILD=$(KERNEL_OUT) ARCH=$(TARGET_ARCH) $(ARM_CROSS_COMPILE) install-modules
+	cp `find $(KERNEL_OUT)/$(TARGET_KERNEL_SOURCE) -name *.ko` $(KERNEL_MODULES_OUT)/
+	arm-eabi-strip --strip-debug `find $(KERNEL_MODULES_OUT) -name *.ko`
+	cd external/compat-wireless-3.4-rc3-1; ./scripts/driver-select restore
+
+TARGET_KERNEL_MODULES := EXTRA_MODULES
+
+
+
+
 TARGET_RECOVERY_INITRC := device/hp/tenderloin/recovery/init.rc
 
 # tenderloin - these partition sizes are temporary to complete build

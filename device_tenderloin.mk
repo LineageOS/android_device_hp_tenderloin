@@ -137,14 +137,6 @@ PRODUCT_COPY_FILES += \
     device/hp/tenderloin/prebuilt/modules/nls_utf8.ko:system/lib/modules/nls_utf8.ko \
     device/hp/tenderloin/prebuilt/modules/tun.ko:system/lib/modules/tun.ko
 
-# Wifi Modules
-PRODUCT_COPY_FILES += \
-    device/hp/tenderloin/prebuilt/wifi/ath6kl.ko:system/lib/modules/ath6kl.ko \
-    device/hp/tenderloin/prebuilt/wifi/ath.ko:system/lib/modules/ath.ko \
-    device/hp/tenderloin/prebuilt/wifi/cfg80211.ko:system/lib/modules/cfg80211.ko \
-    device/hp/tenderloin/prebuilt/wifi/mac80211.ko:system/lib/modules/mac80211.ko \
-    device/hp/tenderloin/prebuilt/wifi/compat.ko:system/lib/modules/compat.ko
-
 #Wifi Firmware
 # from kernel.org
 PRODUCT_COPY_FILES += \
