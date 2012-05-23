@@ -7,12 +7,17 @@ busybox mount /boot -o remount,rw
 case "$1" in
     recovery)
         CMD="ClockworkMod"
+        if [ -r /data/local/moboot.default.recovery ];
+        then
+            CMD=`cat /data/local/moboot.default.recovery`
+        fi
         ;;
     altos)
         CMD="webOS"
         ;;
     *)
-        exit 2
+        CMD="$1"
+        ;;
 esac
 
 # possibly we need to check if the target exists, but
