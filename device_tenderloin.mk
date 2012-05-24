@@ -102,6 +102,10 @@ PRODUCT_PACKAGES += \
     libaudioutils \
     audio.primary.tenderloin \
 
+# Camera
+PRODUCT_PACKAGES += \
+    camera.msm8660
+
 # Sensors, misc
 PRODUCT_PACKAGES += \
     librs_jni \
