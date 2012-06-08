@@ -16,6 +16,24 @@
       "revId": "7b872e7a3fa10df7447ee2eb7088d6a56beb3e91",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAT3//9mk\u003d",
+        "filename": "tenderloinparts/res/values-nl/strings.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 3624
+      },
+      "writtenOn": "2012-06-08T13:08:28Z",
+      "side": 1,
+      "message": "Ik had nog nooit gehoord van de vertaling styli. Stylus heeft ook mijn voorkeur.",
+      "parentUuid": "AAAAT3//9rE\u003d",
+      "revId": "7b872e7a3fa10df7447ee2eb7088d6a56beb3e91",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
