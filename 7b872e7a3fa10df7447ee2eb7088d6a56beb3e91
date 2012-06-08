@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAT3//9rE\u003d",
+        "filename": "tenderloinparts/res/values-nl/strings.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 3353
+      },
+      "writtenOn": "2012-06-08T01:54:29Z",
+      "side": 1,
+      "message": "ik zou hier ook voor stylus kiezen omdat dit al gebruikt is",
+      "revId": "7b872e7a3fa10df7447ee2eb7088d6a56beb3e91",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
