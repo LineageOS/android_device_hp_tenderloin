@@ -88,7 +88,7 @@ int Lsm303dlhMagSensor::setDelay(int32_t handle, int64_t ns)
         if (ns < 0)
             return -EINVAL;
 
-        unsigned long delay = ns / 1000000; //nano to mili
+        unsigned long delay = 34/*ns / 1000000*/; //nano to mili
 
         // ok we need to set our enabled state
         int fd = open(LSM303DLH_MAG_DELAY_FILE, O_WRONLY);
