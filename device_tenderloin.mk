@@ -136,6 +136,14 @@ PRODUCT_COPY_FILES += \
 	device/hp/tenderloin/prebuilt/audio/usr/share/alsa/alsa.conf:system/usr/share/alsa/alsa.conf \
 	device/hp/tenderloin/prebuilt/audio/usr/share/alsa/cards/aliases.conf:system/usr/share/alsa/cards/aliases.conf
 
+# Prebuilt camera libs
+PRODUCT_COPY_FILES += \
+	device/hp/tenderloin/prebuilt/camera/libcamera.so:/system/lib/libcamera.so \
+	device/hp/tenderloin/prebuilt/camera/libgemini.so:/system/lib/libgemini.so \
+	device/hp/tenderloin/prebuilt/camera/libmmipl.so:/system/lib/libmmipl.so \
+	device/hp/tenderloin/prebuilt/camera/libmmjpeg.so:/system/lib/libmmjpeg.so \
+	device/hp/tenderloin/prebuilt/camera/liboemcamera.so:/system/lib/liboemcamera.so
+
 # Sensors, misc
 PRODUCT_PACKAGES += \
     librs_jni \
