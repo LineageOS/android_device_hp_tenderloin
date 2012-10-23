@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAaH//+Wg\u003d",
+        "filename": "libsensors/lsm303dlh_mag.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1778
+      },
+      "writtenOn": "2012-10-23T18:08:17Z",
+      "side": 1,
+      "message": "Seems there should be a better way to do this. Is the conversion factor wrong? Can it not handle what the apps are requesting (what are they requesting)? Is there a range of values that we could handle?",
+      "revId": "8b8a0cc37de87718f0268af9104836f8c93b3150",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
