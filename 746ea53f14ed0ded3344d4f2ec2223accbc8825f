@@ -1,0 +1,11 @@
+Change-Id: I746ea53f14ed0ded3344d4f2ec2223accbc8825f
+Code-Review+2: Erik Hardesty <dalingrin@gmail.com>
+Verified+1: Erik Hardesty <dalingrin@gmail.com>
+Code-Review+1: Jarno Orasmae <jarnoorasmae@hot.ee>
+Code-Review+1: Tomasz Rostanski <rostan@podkowa.net>
+Code-Review+1: Chris Moncrieff <taxableamherst@gmail.com>
+Submitted-by: Erik Hardesty <dalingrin@gmail.com>
+Submitted-at: Fri, 16 Nov 2012 13:08:05 -0800
+Reviewed-on: http://review.cyanogenmod.org/16120
+Project: CyanogenMod/android_device_hp_tenderloin
+Branch: refs/heads/ics
