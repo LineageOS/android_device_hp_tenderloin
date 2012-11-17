@@ -3,4 +3,4 @@
 /cache          ext4            /dev/store/cm-cache
 /data           ext4            /dev/store/cm-data
 /system         ext4            /dev/store/cm-system
-/sdcard		vfat		/dev/store/media
+/sdcard		    vfat		    /dev/store/media
