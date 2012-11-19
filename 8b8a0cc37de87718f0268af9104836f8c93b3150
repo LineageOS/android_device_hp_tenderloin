@@ -16,6 +16,24 @@
       "revId": "8b8a0cc37de87718f0268af9104836f8c93b3150",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAa3//7nQ\u003d",
+        "filename": "libsensors/lsm303dlh_mag.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 3136
+      },
+      "writtenOn": "2012-11-19T02:50:52Z",
+      "side": 1,
+      "message": "I suggest the change:\n\nunsigned long delay \u003d ns 1000000*/; //nano to mili\n\n/* Make sure the delay value is usable */\nif (delay \u003e MAX_DELAY)\ndelay \u003d DEFAULT_DELAY;\n\nand defining in the header:\n#define DEFAULT_DELAY 34\n#define MAX_DELAY XXX (pick a maximum working value)",
+      "parentUuid": "AAAAaH//+Wg\u003d",
+      "revId": "8b8a0cc37de87718f0268af9104836f8c93b3150",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
