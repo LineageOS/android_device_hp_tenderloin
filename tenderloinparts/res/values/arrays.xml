@@ -10,4 +10,22 @@
         <item>S</item>
     </string-array>
 
+    <string-array name="preview_modes">
+        <item>@string/preview_mode_preference_title_mirrored</item>
+        <item>@string/preview_mode_preference_title_normal</item>
+        <item>@string/preview_mode_preference_title_rear</item>
+    </string-array>
+
+    <string-array name="preview_mode_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="rotation_mode_values">
+        <item>0</item>
+        <item>90</item>
+        <item>180</item>
+        <item>270</item>
+    </string-array>
 </resources>

@@ -50,6 +50,11 @@ on post-fs
 	mkdir /data/misc/camera 0770 media media
 	mkdir /data/misc/camera/R5_MVEN003_LD2_ND0_IR0_SH0_FL1_SVEN003_DCCID1044 0770 media media
 
+	# camera config
+	touch /data/misc/camera/config.txt
+	chown media:media /data/misc/camera/config.txt
+	chmod 666 /data/misc/camera/config.txt
+
 	setprop vold.post_fs_data_done 1
 
 on init
