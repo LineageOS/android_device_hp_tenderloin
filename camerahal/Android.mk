@@ -31,3 +31,18 @@ ifeq ($(BOARD_DEBUG_MEMLEAKS),true)
 endif
 
 include $(BUILD_SHARED_LIBRARY)
+
+
+# cam_config application for changing the camera modes
+
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := cam_config
+LOCAL_MODULE_TAGS := optional
+LOCAL_PRELINK_MODULE := false
+
+LOCAL_SRC_FILES := cameraConfig.cpp
+
+LOCAL_SHARED_LIBRARIES := liblog
+
+include $(BUILD_EXECUTABLE)
