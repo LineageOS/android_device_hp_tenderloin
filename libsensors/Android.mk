@@ -36,8 +36,10 @@ LOCAL_SRC_FILES := \
 	lsm303dlh_acc.cpp \
 	lsm303dlh_mag.cpp \
 	LightSensor.cpp
-				
-LOCAL_SHARED_LIBRARIES := liblog libcutils
+
+LOCAL_C_INCLUDES += hardware/invensense/libsensors
+
+LOCAL_SHARED_LIBRARIES := liblog libcutils libinvensense_hal
 LOCAL_PRELINK_MODULE := false
 
 include $(BUILD_SHARED_LIBRARY)
