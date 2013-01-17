@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAcn//8ak\u003d",
+        "filename": "camerahal/cameraConfig.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1063
+      },
+      "writtenOn": "2013-01-17T16:46:50Z",
+      "side": 1,
+      "message": "Whitespace is broken here (and above and below).\n\nDoesn\u0027t matter though if this tool is deemed superfluous (see other comment).",
+      "revId": "2015c532d45f07f4a2ee0a047d7107e8ddaac6d5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAcn//8ao\u003d",
+        "filename": "camerahal/cameraHAL.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1265,
+      "author": {
+        "id": 1063
+      },
+      "writtenOn": "2013-01-17T16:46:50Z",
+      "side": 1,
+      "message": "Tabs -\u003e spaces",
+      "revId": "2015c532d45f07f4a2ee0a047d7107e8ddaac6d5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAcn//8a0\u003d",
+        "filename": "tenderloinparts/src/com/cyanogenmod/settings/device/CameraFragmentActivity.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1063
+      },
+      "writtenOn": "2013-01-17T16:46:50Z",
+      "side": 1,
+      "message": "Can \u003d\u003d null actually happen?",
+      "revId": "2015c532d45f07f4a2ee0a047d7107e8ddaac6d5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAcn//8a4\u003d",
+        "filename": "tenderloinparts/src/com/cyanogenmod/settings/device/CameraFragmentActivity.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1063
+      },
+      "writtenOn": "2013-01-17T16:46:50Z",
+      "side": 1,
+      "message": "How about converting the string to an int and having two (static) arrays of ints:\n\nprivate static final int[] MODE_TITLES \u003d new int[] {\n    R.string.preview_mode_preference_title_mirrored,\n    R.string.preview_mode_preference_title_normal,\n    R.string.preview_mode_preference_title_rear\n};\n\n/* same for summaries */\n\nint modeIndex \u003d Integer.parseInt(mode);\npreviewModePref.setTitle(getString(MODE_TITLES[modeIndex]));\n/* same for summaries */",
+      "revId": "2015c532d45f07f4a2ee0a047d7107e8ddaac6d5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAcn//8aw\u003d",
+        "filename": "tenderloinparts/src/com/cyanogenmod/settings/device/CameraFragmentActivity.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1063
+      },
+      "writtenOn": "2013-01-17T16:46:50Z",
+      "side": 1,
+      "message": "Can probably convert to integer here as well.",
+      "revId": "2015c532d45f07f4a2ee0a047d7107e8ddaac6d5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAcn//8as\u003d",
+        "filename": "tenderloinparts/src/com/cyanogenmod/settings/device/CameraFragmentActivity.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1063
+      },
+      "writtenOn": "2013-01-17T16:46:50Z",
+      "side": 1,
+      "message": "Using su here is overkill and ruins the user experience (I\u0027ve tried). I suggest the following:\n\n- Ship a default config (0/0) with decent permissions (e.g. 0660 with graphics/system as owner/group)\n- Make TenderloinParts part of the sharedUserId android.uid.system\n- Use an ordinary FileReader/FileWriter to read/write the files\n\nWhy is a separate tool needed here at all? AFAICT, it just complicates things.",
+      "revId": "2015c532d45f07f4a2ee0a047d7107e8ddaac6d5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
