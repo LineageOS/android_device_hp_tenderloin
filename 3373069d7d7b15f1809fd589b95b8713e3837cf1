@@ -16,6 +16,24 @@
       "revId": "3373069d7d7b15f1809fd589b95b8713e3837cf1",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdX///6M\u003d",
+        "filename": "tenderloinparts/src/com/cyanogenmod/settings/device/CameraFragmentActivity.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 3136
+      },
+      "writtenOn": "2013-02-12T16:06:01Z",
+      "side": 1,
+      "message": "Camera driver is running as media user. It can access only the directories and files created as media user.\nThe only directory the driver can access is /data/misc/camera/ directory.\nWhen you create a default file with 0620 permissions and system:graphics in the init.tenderloin.rc the camera driver won\u0027t be able to read this file so the settings won\u0027t be applied and the app won\u0027t work.\nSo the file needs to be created with media:media owner (what I\u0027m doing) but then the read/write fails unless the operations are made as superuser.",
+      "parentUuid": "AAAAdX///60\u003d",
+      "revId": "3373069d7d7b15f1809fd589b95b8713e3837cf1",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
