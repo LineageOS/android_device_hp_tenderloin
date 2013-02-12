@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAdX///60\u003d",
+        "filename": "tenderloinparts/src/com/cyanogenmod/settings/device/CameraFragmentActivity.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1063
+      },
+      "writtenOn": "2013-02-12T15:37:05Z",
+      "side": 1,
+      "message": "Why are you still using su? It\u0027s totally unneeded, as TenderloinParts runs under the system UID. Just create a default file with 0620 permissions and system:graphics in the init.tenderloin.rc and read/write that file using FileWriter etc.\n\nEven easier would be using persistent system properties (e.g. persist.hw.camera.rotation_mode), as we\u0027re talking about only two settings here.",
+      "revId": "3373069d7d7b15f1809fd589b95b8713e3837cf1",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
