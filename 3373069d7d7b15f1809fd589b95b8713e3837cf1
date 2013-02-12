@@ -34,6 +34,24 @@
       "revId": "3373069d7d7b15f1809fd589b95b8713e3837cf1",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdX///58\u003d",
+        "filename": "tenderloinparts/src/com/cyanogenmod/settings/device/CameraFragmentActivity.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1063
+      },
+      "writtenOn": "2013-02-12T16:25:09Z",
+      "side": 1,
+      "message": "\u0027graphics\u0027 indeed was wrong, but mediaserver is running in the camera group:\nhttps://github.com/CyanogenMod/android_system_core/blob/jellybean/rootdir/init.rc#L434\n\nSo creating it with 0620 and system:camera (or system:media) would be fine.",
+      "parentUuid": "AAAAdX///6M\u003d",
+      "revId": "3373069d7d7b15f1809fd589b95b8713e3837cf1",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
