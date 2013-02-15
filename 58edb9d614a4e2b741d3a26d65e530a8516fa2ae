@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAdX//+2g\u003d",
+        "filename": "init.tenderloin.rc",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 3136
+      },
+      "writtenOn": "2013-02-15T18:05:43Z",
+      "side": 1,
+      "message": "shouldn\u0027t be chown system:media /data/misc/camera/config.txt ?",
+      "revId": "58edb9d614a4e2b741d3a26d65e530a8516fa2ae",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
