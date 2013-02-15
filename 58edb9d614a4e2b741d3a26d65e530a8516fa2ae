@@ -16,6 +16,24 @@
       "revId": "58edb9d614a4e2b741d3a26d65e530a8516fa2ae",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdX//+2A\u003d",
+        "filename": "init.tenderloin.rc",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1063
+      },
+      "writtenOn": "2013-02-15T18:41:48Z",
+      "side": 1,
+      "message": "This isn\u0027t the shell :)\n\nJust check the other chown lines in this file.",
+      "parentUuid": "AAAAdX//+2g\u003d",
+      "revId": "58edb9d614a4e2b741d3a26d65e530a8516fa2ae",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
