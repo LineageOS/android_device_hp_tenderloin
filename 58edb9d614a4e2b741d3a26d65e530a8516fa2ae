@@ -69,6 +69,24 @@
       "revId": "58edb9d614a4e2b741d3a26d65e530a8516fa2ae",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdX//9po\u003d",
+        "filename": "init.tenderloin.rc",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1063
+      },
+      "writtenOn": "2013-02-18T16:40:13Z",
+      "side": 1,
+      "message": "Why? IMHO it\u0027s an internal file that\u0027s not supposed to be edited by random apps.\n\nThinking about it, we need to make some changes, though:\nowner media:system\npermissions 0660\n\n(because TenderloinParts is only running in the system group, not the system UID)",
+      "parentUuid": "AAAAdX//9p8\u003d",
+      "revId": "58edb9d614a4e2b741d3a26d65e530a8516fa2ae",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
