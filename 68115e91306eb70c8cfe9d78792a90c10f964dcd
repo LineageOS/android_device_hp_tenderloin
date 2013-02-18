@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAdX//9nc\u003d",
+        "filename": "init.tenderloin.rc",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 3136
+      },
+      "writtenOn": "2013-02-18T18:16:16Z",
+      "side": 1,
+      "message": "Need to change the mode to 0777 of the /data/misc/camera in order to make the TenderloinParts app to access the /data/misc/camera/config.txt file",
+      "revId": "68115e91306eb70c8cfe9d78792a90c10f964dcd",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdX//9nk\u003d",
+        "filename": "init.tenderloin.rc",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 3136
+      },
+      "writtenOn": "2013-02-18T18:16:16Z",
+      "side": 1,
+      "message": "The touch command does not work in init.tenderloin.rc. I thought I can use the shell commands in here but that was bad assumption.\nWe have to use \"exec touch /data/misc/camera/config.txt\" instead.",
+      "revId": "68115e91306eb70c8cfe9d78792a90c10f964dcd",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
