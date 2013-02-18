@@ -33,6 +33,24 @@
       "revId": "68115e91306eb70c8cfe9d78792a90c10f964dcd",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdX//9nA\u003d",
+        "filename": "init.tenderloin.rc",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 3136
+      },
+      "writtenOn": "2013-02-18T18:28:51Z",
+      "side": 1,
+      "message": "in fact it must be:\nexec /system/bin/touch /data/misc/camera/config.txt",
+      "parentUuid": "AAAAdX//9nk\u003d",
+      "revId": "68115e91306eb70c8cfe9d78792a90c10f964dcd",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
