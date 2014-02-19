@@ -32,6 +32,7 @@ WPA_SUPPLICANT_VERSION      := VER_0_8_X
 BOARD_WLAN_DEVICE           := ath6kl
 WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/ath6kl.ko"
 WIFI_DRIVER_MODULE_NAME     := "ath6kl"
+WIFI_DRIVER_LOADER_DELAY    := 1000000
 
 # Audio
 BOARD_USES_LEGACY_ALSA_AUDIO := true
