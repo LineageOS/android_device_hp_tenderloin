@@ -22,7 +22,7 @@
                          AudioDecoderCap)>
 <!ELEMENT CamcorderProfiles (EncoderProfile+, ImageEncoding+, ImageDecoding, Camera)>
 <!ELEMENT EncoderProfile (Video, Audio)>
-<!ATTLIST EncoderProfile quality (480p|high|low) #REQUIRED>
+<!ATTLIST EncoderProfile quality (480p|qcif|vga) #REQUIRED>
 <!ATTLIST EncoderProfile fileFormat (mp4|3gp) #REQUIRED>
 <!ATTLIST EncoderProfile duration (30|60) #REQUIRED>
 <!ELEMENT Video EMPTY>
@@ -92,7 +92,7 @@
                    channels="1" />
         </EncoderProfile>
 
-        <EncoderProfile quality="high" fileFormat="mp4" duration="60">
+        <EncoderProfile quality="qcif" fileFormat="mp4" duration="60">
             <Video codec="h264"
                    bitRate="3000000"
                    width="640"
@@ -105,7 +105,7 @@
                    channels="1" />
         </EncoderProfile>
 
-        <EncoderProfile quality="low" fileFormat="3gp" duration="30">
+        <EncoderProfile quality="vga" fileFormat="3gp" duration="30">
             <Video codec="m4v"
                    bitRate="256000"
                    width="176"
@@ -121,42 +121,6 @@
         <ImageEncoding quality="90" />
         <ImageEncoding quality="80" />
         <ImageEncoding quality="70" />
-    </CamcorderProfiles>
-
-    <CamcorderProfiles cameraId="1">
-	<EncoderProfile quality="high" fileFormat="mp4" duration="60">
-		<Video codec="h264"
-			bitRate="2000000"
-			width="640"
-			height="480"
-			frameRate="24" />
-
-		<Audio codec="aac"
-			bitRate="96000"
-			sampleRate="16000"
-			channels="1" />
-	</EncoderProfile>
-
-        <EncoderProfile quality="low" fileFormat="3gp" duration="30">
-            <Video codec="m4v"
-                   bitRate="256000"
-                   width="176"
-                   height="144"
-                   frameRate="15" />
-
-            <Audio codec="amrnb"
-                   bitRate="12200"
-                   sampleRate="8000"
-                   channels="1" />
-	</EncoderProfile>
-
-        <ImageEncoding quality="90" />
-        <ImageEncoding quality="80" />
-        <ImageEncoding quality="70" />
-
-        <ImageDecoding memCap="10000000" />
-
-        <Camera previewFrameRate="0" />
     </CamcorderProfiles>
 
     <EncoderOutputFileFormat name="3gp" />
