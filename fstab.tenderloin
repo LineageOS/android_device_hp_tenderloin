@@ -7,3 +7,5 @@
 /dev/store/cm-data                        /data              ext4     noatime,nosuid,nodev,barrier=1,noauto_da_alloc        wait
 /dev/store/cm-cache                       /cache             ext4     noatime,nosuid,nodev,barrier=1,noauto_da_alloc        wait
 /devices/platform/msm_hsusb_host.0/usb    auto               auto     defaults                                              voldmanaged=usbdisk:auto
+## zram device
+/dev/block/zram0					none	swap	defaults	zramsize=134217728
